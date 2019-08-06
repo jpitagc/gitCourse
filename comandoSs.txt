@@ -10,7 +10,7 @@ del log.txt & java -jar -Dselenium.LOGGER.level=WARNING  -Dwebdriver.firefox.bin
 
  mvn clean eclipse:clean eclipse:eclipse -Declipse -Dlocalds install -Dmaven.test.skip   // primera ejeccución (lanzar desde carpeta que contiene el POM)
 
-
+asdasdasdasdasd
 
 
 
