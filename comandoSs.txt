@@ -1,0 +1,33 @@
+java -jar -Dselenium.LOGGER.level=WARNING  -Dwebdriver.firefox.bin="C:\Users\6001192\Downloads\FirefoxPortable\FirefoxPortable\FirefoxPortable.exe"  selenium-server-standalone-2.53.0.jar
+
+
+del log.txt & java -jar -Dselenium.LOGGER.level=WARNING  -Dwebdriver.firefox.bin="C:\Spiders\FirefoxPortable\FirefoxPortable.exe" selenium-server-standalone-2.53.1.jar -log log.txt
+
+
+
+
+ git -c http.sslVerify=false clone https://axinic.central.inditex.grp/bitbucket/scm/ecrawlbs/main.git  // clonar un repositorio desde cmd de git
+
+ mvn clean eclipse:clean eclipse:eclipse -Declipse -Dlocalds install -Dmaven.test.skip   // primera ejeccución (lanzar desde carpeta que contiene el POM)
+
+
+
+
+
+ tasklist | findstr (string)
+
+ ctrl + alt + supr ---> iniciar adminitrador de tareas ----> finalizar proceso 
+
+
+
+https://mail.notes.ce.collabserv.com/livemail/iNotes/Mail/?OpenDocument
+\\PC0EMAEA\Users\0016231 
+
+
+Taskkill /IM bash.exe /F
+
+
+
+
+
+
