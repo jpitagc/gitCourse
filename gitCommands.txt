@@ -1,0 +1,95 @@
+
+COURSERA GIT COURSE 
+
+WEEK 1: 
+
+
+git help [command] --> gets help of a specific command
+
+git / git help 
+
+git [command] -h --> to get specific help of that command  	
+
+
+-------------------How to read git help ??---------------------------
+
+-f --flag --> options or swithces
+
+|      (or) --> represents that a single flag can be written in different ways   Example (-v|-verbose)
+
+[]     (opional values)
+
+<>     (placeholders)  --> this are ment to be repleced with an actual value 
+
+[<>]   (optinal placeholder)
+
+()     (parenthesis) --> used for grouping clarity or to disambiguate a command 
+
+--     --> to disambiguate the command
+
+...   (multiple ocurrences are posible)
+
+---------------------------------------------------------------------
+
+
+gti config [--local|--global|--system] <key> [<value>]
+
+--local  --> applies to only the current repository 
+--global --> applies to every repository that you use on your computer 
+--system --> applies to every repository for all users on your computer 
+
+
+git config user.name --> get the username of teh repository local>global>system
+git config <key>
+
+
+git config --global core.editor <editor> --> to change the default git editor 
+
+---------------------------------------------------------------------
+
+There are thre diferent pasrt in a PROYECT DIRECTORY.  
+
+Working Tree -> directory with the current project 
+Staging area -> contains the files that are going to be added to the next commit 
+Local Repository -> Is alll teh info about the histopry of a proyect 
+
+
+PROYECTDIRECTORY  contains (WorkingTree and /.git).
+./git contains (Staging Area and Local Repository).
+
+---------------------------------------------------------------------
+
+git init --> to create a local repository 
+
+git status --> shwos teh current branch and shows the status of working threee and stagging area 
+
+git add <file/folder> --> adds a single file or a folder with all the files includede to the stagging area
+git add . --> adds al untracked files to the stagging area
+
+git log --oneline --> to see a reduced version of the git log 
+
+git log -3 --> shows only the last 3 commits 
+
+
+git checkout -- <filete> --> to copy last commit into the working directory
+
+---------------------------------------------------------------------------
+
+git remote add origin https://github.com/jpitagc/gitCourse.git --> add a remote repository to the local 
+
+git push -u origin master --> push the local repository branch master to the remote 
+
+
+-------------------------------------------------------------------------
+
+ origin --> is the default url where you push your local repository.
+
+ in this case origin is  https://github.com/jpitagc/gitCourse.git
+
+ you can add as many remote repositories as needed and give them the name you want 
+
+
+
+
+
+
