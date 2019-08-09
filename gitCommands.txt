@@ -82,14 +82,32 @@ git push -u origin master --> push the local repository branch master to the rem
 
 -------------------------------------------------------------------------
 
- origin --> is the default url where you push your local repository.
+origin --> is the default url where you push your local repository.
 
- in this case origin is  https://github.com/jpitagc/gitCourse.git
+in this case origin is  https://github.com/jpitagc/gitCourse.git
 
- you can add as many remote repositories as needed and give them the name you want 
+you can add as many remote repositories as needed and give them the name you want 
+
+
+-------------------------------------------------------------------------
+
+How to start a remote repository??
+
+If you already have some work done -> add the remote 
+if you dont have a local repo yet --> clone the remote 
+
+
+git clone  --> creates a local copy of a remote repository. 
+git clone <url> [localProjectName] --> if you specify a localProjectname the working directory will be created with this providede name whereas if you dont provide de name the default name will be used (url.substract(.git))
 
 
 
+git remote add <name> <url> --> name (origin by default) url(hhttp://github...)
+
+git remote --verbose --> will thisplay the remote repository to witch this local is pushing/fetching to/from 
+             -v
+
+git push [<repository>] [<branch>] --> repository default is origin 
 
 
 
