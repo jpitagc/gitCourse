@@ -1,7 +1,15 @@
 
+
+
+
 COURSERA GIT COURSE 
 
+
+
+
+
 WEEK 1: 
+
 
 
 git help [command] --> gets help of a specific command
@@ -108,6 +116,132 @@ git remote --verbose --> will thisplay the remote repository to witch this local
              -v
 
 git push [<repository>] [<branch>] --> repository default is origin 
+
+
+
+
+
+
+
+WEEK 2:
+
+
+
+git commits woks as a Directed Acyclic Grapgh.
+
+got log --graph --> will display this graph with all branches
+
+----------------------------------------------------------------------
+
+git object --> git uses objects to store all the date os a repository 
+               there are 4 kinds os objects 
+
+               	Commit object --> Simple text file that contains information such as : commit user info, commit message, reference to commit parent(s), reference to the root tree of the proyect.
+
+               	Annotated tag --> reference to a specific commit 
+
+               	Tree          --> contains directories and file names of the proyect 
+
+               	Blob          -->  stores the content of a file that is being managed by git 
+
+
+
+Normal git users only interat with commit object and tags but not directly with the entitiy that contains them (object store) but throw git commands
+
+
+Git ID (hashes, SHA-1 ,objectids... ) --> name of a git object. All object have a 40 character hexadecimal string  
+  Secure Hash Algorithm 1 --> git hash-object <filename> --> is used internally to generate SHA-1 string (not normally used by end users) This non used command are called Plumbing commands 
+
+  Git shorttens the git IDs to a 7 first character version for efficiency. User can manage this ids by only the fist 7 characters if no two object have the same 7 first SHA-1 characters identicall.
+
+  Git show <ObjectId> --> you can write as few characters as the internal code can only retrived 1 object 
+
+  --------------------------------------------------------------------------
+
+  References: --> Userfriendly name that point to a commit SHA-1 value or another reference. Refences that point to other references are called symbollic references.
+                  Head,Master,... are examples of references 
+
+  A branch lavel/ reference (master,develop...) points to th emost recent commit of that branch. is called the tip of the branch  
+
+  This references are stored in the ./git  
+
+  If you enter .git you can navigate to refs/ where references are stored. In a x number of folders this references are stored as simple text files that contain the SHA-1 string to the object they point to.
+
+  HEAD --> is a reference of the current commit. it ussually point to the branch lavel of the current branch. tehre is only one reference of head in a repository meaning that if you change branches teh HEAD will change to the last commit of this new branch.
+       cat .git/HEAD ---> ref: ref/heads/master      The content of teh file HEAD i sthe relative path to the current reference its pointing to. Its a symbolic reference 
+
+GIT LOG EXAMPLE
+  e6050de (HEAD -> master, origin/master, origin/develop, develop) Week 1 Terminated. This means that Head reference points to master referece that points to the object with SHA-1 e6050de
+
+
+How to reference to other commits??? using ~ and ^ (We can use this with any reference or any objectId)
+
+~ or ~1 --> parent 
+~~ or ~2 --> grandparent   
+
+^ or ^1 --> shows the first parent of a merge commit 
+^2 --> shows the second parent of th emerge commit 
+^^ --> shows the first parent first parent of the merge commit
+
+this characters can be combined as wanted to navigate throw the git graph
+
+
+TAG is a lavel for a specific commit. 
+		There are two types:  
+								LightWeight Tag --> implemented as a simple reference. Point to a certain object of git 
+
+								Annotataed Tag --> one of the four git objects listed before. Is similar to a commit object beacuse it includes metadata (tag author info, tag date, tag message and Id of the object referenced)
+													this tags can be signed and verify with GNU Privacy Guard. Enables managers to sign releases. There are often better than lightweight tags 
+
+You can use tag as refeerences to show commits--> git show 1.0.9
+
+How to add tags to a commit??
+
+git tag <tagname> [<commit>]   example   git tag 1.0.13 master   --> by default git uses HEAD if no other reference or cmmit is specified by the command
+
+git tag -a [-m <msg> | -F <file>] <tagname> [<commit>] --> to create a annotated tag. U must specify a tag msg, thsi can be done in several ways. 1. -m "message"
+																																				  2. -F filename
+																																				  3. No to specify flag so an editor will open so that you can write the message  
+
+para borrar un tag del remote. -->  git push origin :refs/tags/<tagname>
+
+git push -->  will not push the tags created.
+git push <remote> <tagname> --> to push a single tag
+git push <remote> --tags --> to push all tags 
+
+-------------------------------------------------------------------------------------
+
+BRANCHES
+
+ Branch are simple and easy. The only create a reference.
+ They are used to isolate certain work so it dosent affect others. Branches are not aware of other branches.
+ Enable team development. Merging later is not nrmally difficult 
+ Support for multiple versions at the same time.
+
+ Types: 
+        1. Short-lived: also called topic of feature branches. Normally just contained a small change to the forject(new feature, bug fix, config change, ...)
+        2. Long-runnig: Live longer. Master or develop branch.
+
+ git branch --> to see the branches of the repository. the current branch will be highlighted in other color.
+ 
+ A- git branch <name> --> creates a reference for the new branch but it dosent change branch 
+ B- git checkout <branch or commit> --> switches the HEAD reference to point to the specified branch label and updates the working tree with the files corresponding to that branch  
+
+ C = A + B = git checkout -b <branchname> --> this will combine both the creation and the checkout of a new branch. It fails if the branch already exists.
+
+
+ git checkout <commit> --> this can be done to see the code of an specific commit as the working tree will load the files of that especific commit. Now HEAD will point to that specific commit.
+                           This is known as a DETACHED HEAD STATE meaning that instead of the HEAD reference pointing to a branch label points directly to the SHA-1 of a certain commit 
+
+
+
+ git branch -d <branchname> --> to delete a certain branch reference. Branch labels are often deleted after merging with the master branch (short-lived branches). 
+
+ git nomally wont allow you to delete branches that point to commits only in this branch beacuse work will be lost. If branch is not fully merged. 
+ git branch -D <branchname> --> will force a branch delete when this commits are not merged with other brnaches. Data loss when git cleans dangling(colgante) commits perodically as (garbage collector)
+
+ git reflog (only works locally)...
+
 
 
 
