@@ -14,7 +14,7 @@ WEEK 1:
 
 git help [command] --> gets help of a specific command
 
-git / git help 
+git or git help 
 
 git [command] -h --> to get specific help of that command  	
 
@@ -55,11 +55,11 @@ git config --global core.editor <editor> --> to change the default git editor
 
 ---------------------------------------------------------------------
 
-There are thre diferent pasrt in a PROYECT DIRECTORY.  
+There are three different parts in a PROYECT DIRECTORY.  
 
 Working Tree -> directory with the current project 
 Staging area -> contains the files that are going to be added to the next commit 
-Local Repository -> Is alll teh info about the histopry of a proyect 
+Local Repository -> Is alll teh info about the history of a proyect 
 
 
 PROYECTDIRECTORY  contains (WorkingTree and /.git).
@@ -69,7 +69,7 @@ PROYECTDIRECTORY  contains (WorkingTree and /.git).
 
 git init --> to create a local repository 
 
-git status --> shwos teh current branch and shows the status of working threee and stagging area 
+git status --> shows the current branch and shows the status of working threee and stagging area 
 
 git add <file/folder> --> adds a single file or a folder with all the files includede to the stagging area
 git add . --> adds al untracked files to the stagging area
@@ -129,7 +129,7 @@ WEEK 2:
 
 git commits woks as a Directed Acyclic Grapgh.
 
-got log --graph --> will display this graph with all branches
+git log --graph --> will display this graph with all branches
 
 ----------------------------------------------------------------------
 
@@ -212,7 +212,7 @@ git push <remote> --tags --> to push all tags
 -------------------------------------------------------------------------------------
 
 BRANCHES
-
+  
  Branch are simple and easy. The only create a reference.
  They are used to isolate certain work so it dosent affect others. Branches are not aware of other branches.
  Enable team development. Merging later is not nrmally difficult 
@@ -231,16 +231,25 @@ BRANCHES
 
 
  git checkout <commit> --> this can be done to see the code of an specific commit as the working tree will load the files of that especific commit. Now HEAD will point to that specific commit.
-                           This is known as a DETACHED HEAD STATE meaning that instead of the HEAD reference pointing to a branch label points directly to the SHA-1 of a certain commit 
+                           This is known as a [DETACHED HEAD STATE] meaning that instead of the HEAD reference pointing to a branch label points directly to the SHA-1 of a certain commit 
+                                         this is perfectly fine to check the staged code of a certain previous commit. If you want to contnue from that deteached head state to develop code you first need to create a branch from that commit
+                                         Steps: 
+                                                1. Move to the commit desired (detached ehad state)
+                                                2. Create a new branch 
+                                                3. Checkout thta branch 
+
 
 
 
  git branch -d <branchname> --> to delete a certain branch reference. Branch labels are often deleted after merging with the master branch (short-lived branches). 
 
- git nomally wont allow you to delete branches that point to commits only in this branch beacuse work will be lost. If branch is not fully merged. 
- git branch -D <branchname> --> will force a branch delete when this commits are not merged with other brnaches. Data loss when git cleans dangling(colgante) commits perodically as (garbage collector)
+ git nomally wont allow you to delete branches that point to non-merged commits (only in this branch being deleted) beacuse work will be lost. 
+ git branch -D <branchname> --> will force a branch delete even if this commits are't merged with other branches. Data loss will occur only when git cleans dangling(colgante) commits. This is done perodically as (garbage collector)
 
- git reflog (only works locally)...
+ git reflog (only works locally) returns a local list of recent HEAD commits.
+
+git checkout -b <branchName> <commit> --> crates branch and checkouts in the specified commit 
+
 
 
 
