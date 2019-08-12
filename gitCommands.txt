@@ -148,8 +148,8 @@ git object --> git uses objects to store all the date os a repository
 
 Normal git users only interat with commit object and tags but not directly with the entitiy that contains them (object store) but throw git commands
 
-
-Git ID (hashes, SHA-1 ,objectids... ) --> name of a git object. All object have a 40 character hexadecimal string  
+---------------------------------------------------------------------------------
+GIT ID      (hashes, SHA-1 ,objectids... ) --> name of a git object. All object have a 40 character hexadecimal string  
   Secure Hash Algorithm 1 --> git hash-object <filename> --> is used internally to generate SHA-1 string (not normally used by end users) This non used command are called Plumbing commands 
 
   Git shorttens the git IDs to a 7 first character version for efficiency. User can manage this ids by only the fist 7 characters if no two object have the same 7 first SHA-1 characters identicall.
@@ -186,7 +186,7 @@ How to reference to other commits??? using ~ and ^ (We can use this with any ref
 this characters can be combined as wanted to navigate throw the git graph
 
 
-TAG is a lavel for a specific commit. 
+TAG is a label for a specific commit. 
 		There are two types:  
 								LightWeight Tag --> implemented as a simple reference. Point to a certain object of git 
 
