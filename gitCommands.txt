@@ -251,6 +251,44 @@ BRANCHES
 git checkout -b <branchName> <commit> --> crates branch and checkouts in the specified commit 
 
 
+When on a DETACHED HEAD STATE git log will only show commit from root until that head.  git log --all will print all branches and commits
+
+
+git branch -d develop  --> deletes branch ref in local 
+git push origin -d develop --> deletes them ref in remote 
+
+
+-------------------------------------------------------------------------------------
+
+Merging 
+
+Types: 
+       1. Fast-forward merge: moves the branch label to the tip of the topic branch. The branches have teh same commits now. Is the default merge. 
+
+                     master:   a                             master: a           c 
+                                \            ---> Merge --->          \         /
+                     develop:    a - b - c                    develop: a - b - c 
+
+            OJO --> The fast-forward merge is posible if no other commits have been made to the master bracnch bracuse if this is not the case the last commit of the branch woul have info that the branch dosent.
+                     master:   a - d 
+                                \
+                     develop:    b - c    
+
+
+       2. Merge commit : combines commits of the two tips of branches being merged. This could lead in a merge comflict if both branches change the same code in different ways. 
+
+                    master:   a - d -  d   If no conflicts are encountered a merge commit and a fast forward commmit will be done in the same way: 1. git checkout master       
+                                \     /                                                                                                            2. git merge <branch>
+                     develop:    b - c                                                                                                             3. git branch -d <branch> (if deleted is needed)
+          
+            Merge commits can be done even if the master branch has no new commits since the branch of this topic branch. This will let the git graph still show the previous branch at any time in the history of the proyect.
+
+                     git merge --no-ff <branch> --> --no--fastforward
+
+
+
+       3. Squash Merge 
+       4. Rebase
 
 
 
