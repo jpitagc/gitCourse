@@ -349,3 +349,20 @@ once the file is fixed
 -git status --graph --> to see teh actual merge
 -git branch -d <topicbranch> --> optionally delete the topic branch as all work is commited to the master branch.
 
+
+------------------------------------------------------------------------------------------------------------------------
+
+TRACKING BRANCHES (remote branches) 
+
+local branch that represent a remote branchs. --> <remote>/<branch> (origin/master)
+
+when you clone a remote repository the exact same references (master && HEAD && ...) are copied in the exact same way and coverted to local references. Remote references are algo copied to the graph. 
+
+tracking branches are only updated with git network commands such as clone/push/pull...  When you commit a branch with teh remote branch pushing to the last tip of the branch this reference will continue to point to the same commit until ypu push the new commit.
+
+- git branch --all --> will show all local and remote branches.  
+
+ HEAD -> origin/master will also appear. remember this is a symbolic reference. This is a really important reference beacuse is teh place where code willl be push in the remote repo. 
+
+ - git log origin/master --oneline
+ - git log origin --oneline --> origin will get the HEAD reference in the remote repo .
