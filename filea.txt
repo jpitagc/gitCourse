@@ -2,4 +2,4 @@ Feature 1 (bug fixed)
 feature 3
 feature 2
 feature 4
-fuature 5
+feature 10
