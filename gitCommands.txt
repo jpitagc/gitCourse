@@ -292,3 +292,60 @@ Types:
 
 
 
+
+
+WEEK 3:
+
+
+ RESOLVING MERGE CONFLICTS 
+
+In case two different branches make changes to the same part of a file. A person needs to make a decision in how to resolve this conflicts. Here fast-forward merges are not posible 
+When git is about to combine the work of these two branches it sees that the work on the same file is different in each branch. 
+In case different files are changed there is no problem in merging as git will know to take all the new data from both branches.  
+
+Git can also merge brenches that changed the same file if this change affects to different HUNKS.
+Example. If a branch develop is used to fix a bug form already committed code and the master branch is used to add a new feature(both in teh same file), merging would not derive in a a merging commit as git would know how to save all the progress.
+
+Th way git merge the files depends on the merge-strategy. 
+
+To avoid merging conflicts its better to use branches for small bug/features and merge as much as posible so that different branches dont diverge in code too much. Avoid braching a branch as much as posible. Modular software is less propense to deal with merge conflcits.
+
+
+RESOLVING MERGE CONFLICTS INVOLVES THREE COMMITS.
+
+1. The tip of the topic branch being merge. This commit is called "THEIRS"
+2. The tip of the master branch. This commit is called "OURS"/"MINE"
+3. A common ancestor. The commit where the topic branch was created. This commit is calles "MERGE BASE" 
+
+Basic Steps: 
+            1. Chechout master branch 
+            2. Trying to merge the topic branch. CONFLICT 
+            3. Fix the files that produce the conflict
+            4. Stage files changed
+            5. Commit the merge 
+            6. Optionally delete de topic branch  
+
+The key in this conflicts is that file with conflcits are modified by git and placed in the working tree.
+
+
+Process of conlfict resolving
+
+-git merge <topicbranch> --> Conflict shown by git 
+-git status --> will show that tou have unmerged paths and would sow many options. (git merge --abort)
+
+now git would add all the info of the different copies of teh files that result in a conflicts in this way.
+
+feature 1 
+<<<<<<<<<< HEAD 
+feature 2          --> Form OURS commit 
+===========
+feature 3          --> From THEIRS commit 
+>>>>>>>>> topicbranch
+
+once the file is fixed 
+
+-git add <file> --> to teh statgin area 
+-git commit --> you can edit the message if desired but now the branches are already merged.
+-git status --graph --> to see teh actual merge
+-git branch -d <topicbranch> --> optionally delete the topic branch as all work is commited to the master branch.
+
