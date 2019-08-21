@@ -511,7 +511,7 @@ Interactive Rebase: Interactive rebesae lets you edit commit using commands. The
                                                               3. Removes the newer commit 
 
 
-SQUASH MERGE: Merges the tip of the feature branch onto the tip of the master branch. Places teh result on teh stagging area and the result can be committed. 
+SQUASH MERGE: Merges the tip of the feature branch onto the tip of the master branch. This will squash all the feature branch into a single commit and will merge it onto the master branch. Places the result on teh stagging area and the result can be committed. 
               the feature branch will no longe be part og the re`pository and will be collected by teh garbage collector 
 
 
@@ -521,9 +521,48 @@ SQUASH MERGE: Merges the tip of the feature branch onto the tip of the master br
                                                                                        git brach -D <featurebranch>
 
 
-                  
-                            
+-----------------------------------------------------------------------------------------------------------------------------------------------------
 
+
+WEEK 4
+
+PULL REQUESTS --> A feature of Git hosting sites. The goal is to merge a branch into teh proyect. Enable team communication related to work of the branch.
+                  - Notifications sent to tam members 
+                  - Feedback or comments 
+                  - Aproval of the contetnt(code review)
+
+    TYPES depending on the remote configuration: single remote repository (common one). Multi-repository is a pull request to merge a fork repository onto the upstream Repository this is common if the submitter dosen´t hace access to teh upstream repo.  
+
+      When do you OPEN a pull request?
+
+        - When teh branch is created to start communicating with the team 
+        - When you need comments on the branch
+        - When the branch is ready for review and merging 
+
+
+        Pull request are OPENED by the GUI 
+
+
+FORK --> copying a remote repo to your own online account. Both are considered remote repositories, the upstream repository is considered the source of truth.
+
+   This is a feature of teh web hosting service such as github or bitbucket. Once you fork a repository the forked repo will not contain new commit to the upstream repository. The web hosting will show that this repository is 1 commit behind <upstreamRepository>
+   There is a sync now button to resychronize. Synchronizing will create a merge commit on the forked repo. 
+
+   MULTI-REPOSITORY PULL REQUEST: 
+
+           - Fork teh upstream branch
+           - Create a branch in the forked repo 
+           - Open a pull request 
+
+GIT WORKFLOWS --> define how a team accomplishes work, git is lexible so many options can be picked and combined as needed.
+
+       1. Centralized Workflows --> Single Branch. This workflow will lack the posibility to open pull request and review code before merging onto the master branch.
+
+       2. Feature Bramch Workflow --> All the work is in feature or topic branches and then pull request are done to the master branch. 
+
+       3. Forking Workflow --> contains multiple remote repositories. There is jsut one remote repository know as the upstream repo considered the source of truth. This is really common in open source proyects as only memebers of the upstream team will merge pull request from forked repos. Normally the forked repo team is in charge in keeping the repo up to date. Normally after forking a repor also branching is envolve to ease the task of synchronising teh fork repo with teh source of truth.
+
+       4. Gitflow Workflows -->  You have two long runnig branches. Master is reserved only for commits that represent public realeases of the proyect that are normally lightweight tagged with the number of the version to be realeased. A sencond long-running branch develop used for developping the features of the proyect but these features are coded into short-running feature branches and pull requested to the develop branch. When important ammount of work is done and the team considers that a new version release can be done all features are merged to the develop branch and these to the master branch. If after merging to develop and before merging to master some small changes have to be done to the code a release (example centain test not passed by the new commit) short-running branch can be created to perform the changes and then this branch pull requested to the master branch directly. be aware thet before continuing the progress in the develop branch this feature release branch has to be merged onto teh develop becuse if not these problem will appear again in later releases.  After the release is sent to the public bugs can be detected by users. To solve this bugs a hotfix branch can be created directly from the master branch, fix teh bug and then merge onto master directly and publish a new version. Remember to merge this hotfix branch first to the develop branch before removing thsi branch so that the bug dosent appear in future releases. 
 
 
 
