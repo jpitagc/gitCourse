@@ -365,4 +365,167 @@ tracking branches are only updated with git network commands such as clone/push/
  HEAD -> origin/master will also appear. remember this is a symbolic reference. This is a really important reference beacuse is teh place where code willl be push in the remote repo. 
 
  - git log origin/master --oneline
- - git log origin --oneline --> origin will get the HEAD reference in the remote repo .
+ - git log origin --oneline --> origin will get the HEAD reference in the remote repo.
+
+
+ - git remote set-head <remote> <branch> --> this will set de HEAD reference to the tip of the branch specified. 
+
+
+
+ - git log --all --> to see a log of lcoal+remote repos to see if any colleague has made any changes.
+
+
+
+ ---------------------------------------------------------------------------------------------------------------------------
+
+ FETCH,PULL AND PUSH 
+
+ Network Commands --> Clone, Fetch, Pull, Push.
+
+ FETCH  -> Retrives new objects and references form the remote repository. Updates all of the traking branches. 
+          It is used to see if changes have been done to ht eremote repo without pulling them. 
+          Tracking references might have changed. Fetching wont change local references.
+
+          - git fetch --> this will display somthing if git objects have been fetched.
+          - git status --> will infomr you if yout current local branch is behind the tracking branch.
+                           (your branch is behins '<remote>/<brnach>' by x commits, and can be fast-forwarded 
+                             use git pull to update your local branch) 
+
+ PULL  -> Fetches and merges commits locally.  FETCHED_HEAD: is an alias for the tip of the tracking branch. 
+
+         new objects and references form the remote repo are fetched. If new objects are added to the tracking branch, the tracking branch is merged into the local branch. The current branch is assumed if branch is not specified.
+
+         merging options: 
+                          . --ff (default): fast forward if posible. Otherwise perform a merge commit.
+                          . --no-ff: allways include a merge commit
+          git pull        . --ff-only: cancel if fast forward is not posible. avoid a merge commit 
+                          . --rebase [--preserve-merges]: further discussed
+
+        - GIT PULL WITH FAST FORWARD MERGE:
+            1. git status --> your branch is behind remote by 1 commit
+            2. git pull 
+            3. git log --> to check that our local master label is posinting to teh master tracking label
+
+        - GIT PULL WITH CONFLICTING UNCOMMITTED CHANGES (IF CHANGES HAVE BEEN MADE TO TEH FILES THAT ARE BEING PULLED) --> is this case teh pull acts like a merge form a topic local branch but with the remote tracking master branch 
+            1. git pull --> your local changes to the following files would be overwitten by merge. Please commit your changes or stash before you merge. Aborting.
+            * only if conflict occur. If you hacve made changes to files that didnt change in the new remote commit the merge will continue succesfully.
+            2. fix the file to get what you desire 
+            3. git add <file>
+            4. git merge --continue 
+
+ PUSH  ->  git push [-u] [<reposiroty>] [<branch>] --> repo can be a name (origin) or the actual url. -u option will create a local tracking reference of this branch.
+
+Fetch or pull beafore you push is suggested. if new remote commits appear when you are about to push this command will be aborated.
+
+
+
+-----------------------------------------------------------------------------------------------------------------------------
+
+REBASING  --> this rewittes commits so this should be done with caution. GENERAL RULE- do not rebase history that is been shared with others.
+
+Types: 
+        1. Regular Rebase: moves commits to a new parent. Because teh ancestor chain is different, each of teh reapplied commits has a different commit ID (b',c').
+                            No longer need a merge commit(because there's no new commits in the amster branch) and the merge of teh branch can be fast-forward. 
+                            Rebasing is a type of merge so is succeptible to merge conflicts.
+                            Be aware that the conflict you are resolving are for the feture branch. 
+                                      
+                   EXAMPLE:     b - c                            b' - c'  
+                               /        --> REBASE -->          /
+                              a - d                        a - d 
+
+
+                  Pros : 
+                         - You can incorporate changes from the parent branch. It makes tha eventual merge into master fats-forwardable 
+                         - Avoids unnecesary commits as merge commits often are 'stupid' --> define clean commit history 
+                  Cons : 
+                         - Megre conflicts may need to be resolve 
+                         - Can cause problems if commits have been shared (new ID's)
+                         - Your are changing the commit history
+
+                  How to perform a Rebase --> git checkout <topicbranch> and git rebase master                |_ This would change the current branch parent to the tip of the master branch
+                                                                         or  git rebase master <topicbranch>  | 
+
+
+                   MergeConflicts --> git checkout <topicbranch>
+                                      git rebase master   
+                                      -----CONFLICT-----                      ---> BEFORE RESOLVINF THE CONFLICT YPU CAN ABORT IT: git rebase --abort 
+                                      * Fix files that caused the problems 
+                                      git add <file>
+                                      git rebase --continue
+
+
+        2. Interactive Rebase 
+
+
+-----------------------------------------------------------------------------------------------------------------------------------
+
+REWRITTING HISTORY 
+
+Amending a commit: 
+
+          1. Amending to change de commit message.  git commit --amend -m "new commit message"
+          2. Amending the commit to change a file.  -change file
+                                                    - git add <file>
+                                                    - git commit -amend --no-edit --> no edit option is to maintain the previous commit message.
+
+Interactive Rebase: Interactive rebesae lets you edit commit using commands. The commits can belong to any branch, history is change so do not use for shared commits.
+  
+                   git rebase -i <commit> --> this will let you do different action for each commit listed after the commit specified in the command:
+
+                   Afeter executing a file will open to specify the actions to be done with each child commit of teh specified one. 
+
+                            - Use the commit as is --> do nothing with this commit 
+                            - Edit the commit message
+                            - Stop and edit the commit --> going one by one the commit rebase will perform de actions described in the rebase interactive file. In this commit the rebase will halt to let you edit the commmit in a detached head state.
+                            - Drop/Delete the commit 
+                            - Squash 
+                            - Fixup 
+                            - Reorder Commits 
+                            - Execute Shell commands 
+
+
+                            # Commands:
+                            #  p, pick = use commit
+                            #  r, reword = use commit, but edit the commit message
+                            #  e, edit = use commit, but stop for amending
+                            #  s, squash = use commit, but meld into previous commit
+                            #  f, fixup = like "squash", but discard this commit's log message
+                            #  x, exec = run command (the rest of the line) using shell
+                            #  d, drop = remove commit
+                            #
+                            # These lines can be re-ordered; they are executed from top to bottom.
+                            #
+                            # If you remove a line here THAT COMMIT WILL BE LOST.
+                            #
+                            # However, if you remove everything, the rebase will be aborted.
+                            #
+                            # Note that empty commits are commented out
+
+
+                         edit --  If we choose edit, the rebase interactive will stop in this commit, let s ammend the commit (commit message, file or both) and then execute git rebase --continue to keep rebasing.
+                         drop --  will delete a commit and all the work of that commit 
+                         squash -- performs three actions: this is applied to teh last of the two commits you want to squash.
+                                                           (fixup is the same but the squashed commit message is discarded).
+                                                              1. Applies a newer (squashed) commit to an older commit 
+                                                              2. Combines the commit messages 
+                                                              3. Removes the newer commit 
+
+
+SQUASH MERGE: Merges the tip of the feature branch onto the tip of the master branch. Places teh result on teh stagging area and the result can be committed. 
+              the feature branch will no longe be part og the re`pository and will be collected by teh garbage collector 
+
+
+                b - d                                                      Actions:    git checkout master
+               /               ---> Squash Merge --->    a - c - d                     git merge --squash <featurebranch>
+              a - c                                                                    git commit 
+                                                                                       git brach -D <featurebranch>
+
+
+                  
+                            
+
+
+
+
+
+
