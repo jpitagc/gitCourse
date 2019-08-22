@@ -1,0 +1,94 @@
+APUNTES CRAWLER
+
+
+
+Observer-Observable java interface-class
+
+The Model/View/Controller architecture was designed to reduce the programming effort required to build systems that made use of multiple, synchronized presentations of the same data. Its central characteristics are that the model, the controllers, and the views are treated as separate entities, and that changes made to the model should be reflected automatically in each of the views.
+
+The Java programming language provides support for the Model/View/Controller architecture with two classes:
+  1. Observer -- any object that wishes to be notified when the state of another object changes
+  2. Observable -- any object whose state may be of interest, and in whom another object may register an interest
+Typically, the model is a subtype of Observable and the view is a subtype of observer. 
+
+
+
+
+
+POJO --> Plain Old Java Object . What we call object in java 
+
+
+
+SERIALIZABLE
+
+Java provides a mechanism, called object serialization where an object can be represented as a sequence of bytes that includes the object's data as well as information about the object's type and the types of data stored in the object.
+After a serialized object has been written into a file, it can be read from the file and deserialized that is, the type information and bytes that represent the object and its data can be used to recreate the object in memory.
+
+
+
+
+OVAL --> Object Validation 
+
+OVal is a pragmatic and extensible validation framework for any kind of Java objects (not only JavaBeans).
+Constraints can be declared with annotations (@NotNull, @MaxLength)
+
+
+
+
+HIBERNATE 
+
+Hibernate es una herramienta de mapeo objeto-relacional (ORM) para la plataforma Java (y disponible también para .Net con el nombre de NHibernate) que facilita el mapeo de atributos entre una base de datos relacional tradicional y el modelo de objetos de una aplicación, mediante archivos declarativos (XML) o anotaciones en los beans de las entidades que permiten establecer estas relaciones.
+
+
+
+
+
+DAO --> Data Access Object design pattern.
+
+ is used to separate low level data accessing API or operations from high level business services. 
+Following are the participants in Data Access Object Pattern: 
+                     1. DAo Value Object: Represent the normal object with attributes, setters amd getters. POJO 
+                     2. DAO Interface: Concrete Interface that shows all the posible data actions on value Objects. 
+                     3. DAO Concrete Class: This class implements above interface. This class is responsible to get data from a data source which can be database / xml or any other storage mechanism.
+
+
+
+
+DTO --> Data Transfer Object desing pattern 
+
+ is used when we want to pass data with multiple attributes in one shot from client to server.
+Server Side business class normally fetches data from the database and fills the POJO and send it to the client or pass it by value.  
+For client, transfer object is read-only. Client can create its own transfer object and pass it to server to update values in database in one shot. Following are the entities of this type of design pattern.
+Following are the participants in Data Access Object Pattern: 
+                    1.Transfer Object: POJO Object 
+                    2.Business Object:  Business Service fills the Transfer Object with data.
+                    3.Client Object:  Client either requests or sends the Transfer Object to Business Object. 
+
+
+
+WebServices
+
+Different books and different organizations provide different definitions to Web Services. Some of them are listed here.
+A web service is any piece of software that makes itself available over the internet and uses a standardized XML messaging system. XML is used to encode all communications to a web service. For example, a client invokes a web service by sending an XML message, then waits for a corresponding XML response. As all communication is in XML, web services are not tied to any one operating system or programming language—Java can talk with Perl; Windows applications can talk with Unix applications.
+Web services are self-contained, modular, distributed, dynamic applications that can be described, published, located, or invoked over the network to create products, processes, and supply chains. These applications can be local, distributed, or web-based. Web services are built on top of open standards such as TCP/IP, HTTP, Java, HTML, and XML.
+Web services are XML-based information exchange systems that use the Internet for direct application-to-application interaction. These systems can include programs, objects, messages, or documents.
+A web service is a collection of open protocols and standards used for exchanging data between applications or systems. Software applications written in various programming languages and running on various platforms can use web services to exchange data over computer networks like the Internet in a manner similar to inter-process communication on a single computer. This interoperability (e.g., between Java and Python, or Windows and Linux applications) is due to the use of open standards.
+
+A web service enables communication among various applications by using open standards such as HTML, XML, WSDL, and SOAP.
+ A web service takes the help of :
+                                     1.XML to tag the data
+                                     2.SOAP to transfer a message. Simple Object Access Protocol is a protocol used in computing. Web services use this protocol to communicate.
+                                     3.WSDL to describe the availability of service
+
+
+Apache CXF --> In today's environment, you can create a web service application using several options. You can use one or more of the several standard and widely accepted protocols for communication. For example SOAP, XML/HTTP, RESTful HTTP, and CORBA (Common Object Request Broker Architecture, which was very popular in olden days but not so frequently used now.
+You also have a choice of different transports such as HTTP, JMS, JBI and the choice of front-end API's like JAX-RS and JAX-WS. Having so many options for web service development, there is a need for an open source services framework to glue all the above mentioned options together and that is what Apache CXF does. 
+
+
+
+JAXWS --> Java API for XML Web Services: is a Java programming language API for creating web services, particularly SOAP services.
+
+
+
+Java Servlet -->  Java software component that extends the capabilities of a server. Although servlets can respond to many types of requests, they most commonly implement web containers for hosting web applications on web servers and thus qualify as a server-side servlet web API.
+Apache Tomcat --> mplements several Java EE specifications including Java Servlet, JavaServer Pages (JSP), Java EL, and WebSocket, and provides a "pure Java" HTTP web server environment in which Java code can run. 

@@ -10,7 +10,7 @@ del log.txt & java -jar -Dselenium.LOGGER.level=WARNING  -Dwebdriver.firefox.bin
 
  mvn clean eclipse:clean eclipse:eclipse -Declipse -Dlocalds install -Dmaven.test.skip   // primera ejeccución (lanzar desde carpeta que contiene el POM)
 
-asdasdasdasdasd
+
 
 
 
@@ -27,6 +27,10 @@ https://mail.notes.ce.collabserv.com/livemail/iNotes/Mail/?OpenDocument
 Taskkill /IM bash.exe /F
 
 
+https://axindev.central.inditex.grp/svn/ECOM-CadenaseCommerce/APPWSC-EcomCrawler/trunk 
+
+
+ls -a --> also hidden files
 
 
 

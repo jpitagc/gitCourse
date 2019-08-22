@@ -1,0 +1,84 @@
+REGULAR EXPRESSIONS 
+
+
+Literal characters --> a is a valid regular expression and will match all the a found in the string. Same as regex cat will match all cat subsatring in teh string but will not match Cat as regex is casesensitive.
+
+Metacharacters --> Special caracters used in regular expresions to express certain meaning.  \ * $ . | ? ^ + ( ) [ ] { }
+                   Its importante to know that if you want to use any of these characters as a literal it must bre precedded with a backslash \.
+                   Most regular expression flavors treat the brace { as a literal character, unless it is part of a repetition operator like a{1,3}. So you generally do not need to escape it with a backslash, though you can do so if you want. But there are a few exceptions. Java requires literal opening braces to be escaped.
+                   The backslash in combination with a literal character can create a regex token with a special meaning. E.g. \d is a shorthand that matches a single digit from 0 to 9. 
+                   Example:  To match 1+1=2 the regex should be 1\+1=2.
+                             The regex 1+1=2 wil be valid but will match different strings.
+
+Programming Languages --> If you are a programmer, you may be surprised that characters like the single quote and double quote are not special characters. In your source code, you have to keep in mind which characters get special treatment inside strings by your programming 
+                          language.
+
+
+Non-Printable Characters --> \t matches a tab 
+                             \r matches a carrier return
+                             \n matches a line feed 
+                             \a matches a bell
+                             \e matches a escape 
+                             \f matches a feed 
+                             \v matches a vertical tab (in certain flavors) in others mathes any vertical whitespace 
+
+
+Regex Engine --> There are basically two kinds of regex engines: text-directed and regex-directed. All moder regex engines are regex-directed as certain usefull features as lazy quantifiers and barckreferences are only posible with this engines.
+                
+                Text-Directed --> walks through the subject string, attempting all permutations of the regex before advancing to the next character in the string. A text-directed engine never backtracks.
+
+                Regex-Directed --> walks through the regex, attempting to match the next token in the regex to the next character. If a match is found, the engine advances through the regex and the subject string. If a token fails to match, the engine backtracks to a previous position in the regex and the subject string where it can try a different path through the regex.
+
+
+Character Class [] --> character class or character  set you tell regex engine to match any cahracter between square brackets.
+                       Example: gr[ae]y will match gray and grey.             ([0-9A-FX]{16})+  this matches all 16 character hexadecimal numbers in the text.
+
+                       You can use a hyphen inside to specify a range of characters.  [0-9] [a-z] [A-Z] ... this will match a single digit that is inside that range (including its limmits)
+
+                       A character class starting with a ^ will finda all the characters that matches except those in teh character class.   [^0-9]+ will find all caracters except for numbers.
+                       Example: regex  Javier [^P] will match any person in the list named javier Wich surname dosent start with P.
+
+
+                       Special Characters --> the only special characters inside a character class that would require the use of backslash(\) are: ^ - ] \   the rest can be used withput it and would be treated as normal characters. ^ would also be terated as a literal if you 
+                                              place it anywhere but the start of the class. [x^] will find any x or ^ same as [\^x].
+                                              you can place a closing bracket just at the sart of the class []x] or after a negating caret [^]] and it would be take as a literal. 
+                                              The hyphen can be placed just at the start, end or after a negating caret to be trated as a literal.
+                       Repeating Classes --> Use + to repeat the entire class. [0-9]+ will find all sequence of numbers as one. If you want to find a sequence os repeated numbers such as 3333 in the strain 123078912333351534645 use ([0-9])\1+
+
+                       Class Substraction --> [class-[subtration]] you can substract certain literals of the class desired. [a-z-[aeiou]] will match all caracters except for vowels.
+                       						  substraction must always be the last para of the class [0-9a-z[0-6]] work but [0-9[0-6]a-z] is not a regex expresion.
+
+                       	                      [^class-[substration]] class is negated before substracted so [^1234-[456]] would match everything except for 1,2,3,4,5,6 
+
+                       	                      Note that certain regex flavors do not accept class substraction so the following regex [a-z-[aeiou]] would be the same as [a-z\-\[] and then ] or not even be a regex at all.
+
+
+                       Class Intersection --> [class&&[intersection]] the resulted class is a intersection of these two classes. If the intersected class dosent start with ^ certain flavors accept the following notation [class&&intersection]. POWERGREP will anderstand & as 
+                                              literals.  [a-z-[aeiou]] is the same as [a-z&&[aeiou]].  Nested class intersection is also posible in other notations  --> [0-9&&[0-6]&&[4-9]], [0-9&&[0-6&&4-9]], [0-9&&0-6&&[4-9]], or just [0-9&&0-6&&4-9]
+
+                       ** SHORTHAND CHARACTER CLASSES ** -->  Shorthand characters can be used inside and outside teh square brackets. \s\d equals [\s\d]
+
+                                                                 \d <--> [0-9]
+                                                                 \w <--> [A-Za-z0-9_]   matches the ASCII characters 
+                                                                 \s <--> [ \t\r\n\f]  maytches all empty characters
+                                                               Negative version of the shorthand would be the same but in UpperCase so [^\d] can be \D, [^\w] can be also \W and so on.
+
+                                                               Be careful when using the negated shorthands inside square brackets. [\D\S] is not the same as [^\d\s]. The latter matches any character that is neither a digit nor whitespace. It matches x, but not 8. The former, however, matches any character that is either not a digit, or is not whitespace. Because all digits are not whitespace, and all whitespace characters are not digits, [\D\S] matches any character; digit, whitespace, or otherwise.
+
+
+
+THE DOT (.) --> The dot matches any single character except for the linebreak. This exception exists mostly because of historic reasons. The first tools that used regular expressions were line-based. They would read a file line by line, and apply the regular expression separately 
+                to each line. The effect is that with these tools, the string could never contain line breaks, so the dot could never match them. Modern tools and languages can apply regular expressions to very large strings or even entire files. Except for JavaScript and VBScript, all regex flavors discussed here have an option to make the dot match all characters, including line breaks.
+
+                Line breaks --> \n   \N would be anything but a linebreak so same funtionality as .
+
+
+                FECHAS POSIBLES HASTA 2019 (entero incluido)
+                ((((0[1-9])|([1-2]\d)|(3[0]))[- /.]((0[469])|(11)))|((0[1-9])|(1\d)|(2[0-8])[- /.](02))|(((0[1-9])|([1-2]\d)|(3[01]))[- /.]((0[13578])|(1[02]))))[- /.]((0[13578])|(1[02])))[- /.]((1\d\d\d)|(20[0-1]\d)|(\d\d))
+
+
+
+
+
+
+
