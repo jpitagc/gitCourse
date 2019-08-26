@@ -263,7 +263,7 @@ git push origin -d develop --> deletes them ref in remote
 Merging 
 
 Types: 
-       1. Fast-forward merge: moves the branch label to the tip of the topic branch. The branches have teh same commits now. Is the default merge. 
+       1. Fast-forward merge: moves the branch label to the tip of the topic branch. The branches have teh same commits now. Is the default merge. Rememeber that fast forward is the default case to prevent it --no-f as option.
 
                      master:   a                             master: a           c 
                                 \            ---> Merge --->          \         /

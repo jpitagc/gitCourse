@@ -91,4 +91,12 @@ JAXWS --> Java API for XML Web Services: is a Java programming language API for 
 
 
 Java Servlet -->  Java software component that extends the capabilities of a server. Although servlets can respond to many types of requests, they most commonly implement web containers for hosting web applications on web servers and thus qualify as a server-side servlet web API.
-Apache Tomcat --> mplements several Java EE specifications including Java Servlet, JavaServer Pages (JSP), Java EL, and WebSocket, and provides a "pure Java" HTTP web server environment in which Java code can run. 
+
+
+
+
+APACHE TOMCAT: 
+
+ Apache Tomcat implements several Java EE specifications including Java Servlet, JavaServer Pages (JSP), Java EL, and WebSocket, and provides a "pure Java" HTTP web server environment in which Java code can run. Apache Tomcat is a webcontainer which allows to run servlet and JavaServer Pages (JSP) based web applications. Most of the modern Java web frameworks are based on servlets, e.g. JavaServer Faces, Struts, Spring.
+
+ 
