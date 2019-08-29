@@ -1,0 +1,39 @@
+VIM NOTES : https://www.tutorialspoint.com/vim/
+
+
+BASES: 
+
+Keys h j k l are used to move cursor. Type ":set mouse=a" to allow gui mouse over the text. 
+Esc --> swithc back to command mode 
+:w --> safe changes 
+:q --> quit 
+:wq --> save and quit
+:q! --> force quit (without saving)
+vim -R <file> or view <file> --> open vim in rad only mode 
+
+
+HELP: 
+
+:help --> common help 
+:help <topic name> --> to get help about a specific topic.
+:helpgrep <str> --> finds the string in the help page
+
+INSERT:
+
+i --> insert mode 
+I --> insert mode a the begining of a certain line.
+a --> insert mode in the next position of the cursor 
+A --> insert mode at the end of the line.
+o --> insert mode in a new line just below the current line
+O --> "                            " above "               "
+s --> will erase the current character and enetr insert mode 
+S --> will erase all the line before entering in inserting mode.
+r --> repalce next character without entering in insert mode 
+R --> replace line starting form cursor without entering in insert mode.
+J --> Join two lines.
+
+
+
+
+
+

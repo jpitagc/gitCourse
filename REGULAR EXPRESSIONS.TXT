@@ -72,10 +72,15 @@ THE DOT (.) --> The dot matches any single character except for the linebreak. T
 
                 Line breaks --> \n   \N would be anything but a linebreak so same funtionality as .
 
+                \d\d[- /.]\d\d[- /.]\d\d is a better solution. This regex allows a dash, space, dot and forward slash as date separators. Remember that the dot is not a metacharacter inside a character class, so we do not need to escape it with a backslash.
+
 
                 FECHAS POSIBLES HASTA 2019 (entero incluido)
                 ((((0[1-9])|([1-2]\d)|(3[0]))[- /.]((0[469])|(11)))|((0[1-9])|(1\d)|(2[0-8])[- /.](02))|(((0[1-9])|([1-2]\d)|(3[01]))[- /.]((0[13578])|(1[02]))))[- /.]((0[13578])|(1[02])))[- /.]((1\d\d\d)|(20[0-1]\d)|(\d\d))
 
+                Match any string placed into " ".   REGEX -->  "[^"\r\n]*"   this is a negated class so every char will match but " \n or \r. The * sais that the class can appear as many times as posible including 0.  |_ For these two regex multiline has to be added. /REGEX/gm
+                                                               "[^"\r\n]+"   this is the same regex but it wont include the case of empty string between "".                                                              |
+                
 
 
 

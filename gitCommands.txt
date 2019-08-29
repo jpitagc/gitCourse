@@ -1,8 +1,4 @@
-
-
-
-
-COURSERA GIT COURSE 
+ GIT COURSE : https://www.coursera.org/learn/version-control-with-git/home/welcome        https://www.atlassian.com/git/tutorials/
 
 
 
@@ -563,6 +559,92 @@ GIT WORKFLOWS --> define how a team accomplishes work, git is lexible so many op
        3. Forking Workflow --> contains multiple remote repositories. There is jsut one remote repository know as the upstream repo considered the source of truth. This is really common in open source proyects as only memebers of the upstream team will merge pull request from forked repos. Normally the forked repo team is in charge in keeping the repo up to date. Normally after forking a repor also branching is envolve to ease the task of synchronising teh fork repo with teh source of truth.
 
        4. Gitflow Workflows -->  You have two long runnig branches. Master is reserved only for commits that represent public realeases of the proyect that are normally lightweight tagged with the number of the version to be realeased. A sencond long-running branch develop used for developping the features of the proyect but these features are coded into short-running feature branches and pull requested to the develop branch. When important ammount of work is done and the team considers that a new version release can be done all features are merged to the develop branch and these to the master branch. If after merging to develop and before merging to master some small changes have to be done to the code a release (example centain test not passed by the new commit) short-running branch can be created to perform the changes and then this branch pull requested to the master branch directly. be aware thet before continuing the progress in the develop branch this feature release branch has to be merged onto teh develop becuse if not these problem will appear again in later releases.  After the release is sent to the public bugs can be detected by users. To solve this bugs a hotfix branch can be created directly from the master branch, fix teh bug and then merge onto master directly and publish a new version. Remember to merge this hotfix branch first to the develop branch before removing thsi branch so that the bug dosent appear in future releases. 
+
+
+
+
+
+ADVANCED ALTASSIAN GIT TUTORIAL 
+
+Git rebase can also be used to change teh history of a branch without afecting two branches.
+Example : Having a develop branch that diverged from master 4 commits ago. --> git rebase -i HEAD~3 --> will let you change the history of the branch last three commits as it will take HEAD~3 as teh base and start from there.
+         
+          Grafically:     x--x--x--x--x...  MASTER                                            x--x--x--x--x...  MASTER            
+                                 \                           --> git rebase -i HEAD~3 -->            \
+                                  \- x--x--x--x  DEVELOP                                              \- x--x*--x*--x*  DEVELOP
+
+
+RESETTING , REVESRTING AND CHECKING OUT 
+
+Remember the three state management mechanisms of a Git repo: Working directory, Staged Snapshot and Commit History.
+
+A CHECKOUT is an operation that moves the HEAD reference to a specific commit. It can be a branch tag or the sha-1 number of the commit.
+
+git checkout <commit/btag> <file> --> will move only the file to the version of this file in the specific commit. The changes will be staged. To go back just git checkout <tipofthebranch> <file>.
+
+The idea os checking out a specific file is to come back to a different version to discard certain change. The file will be atomatically staged and commit can be done. If you want to add mire changes to this file you can uncommit
+this file at the previous version with git reset HEAD <file>.
+
+A RESET is a operation that takes a specified commit and resets teh three trees to match teh state of the repo at that commit.
+
+git reset <commit> --> is usefull to move all the work backwards to caertain commit to discard all changes done. The commits are dengling and will be deleted by the garbage colletor. 
+       --soft --> The staged snapshot and working directory are not altered in any way. So it changes just the commit tree
+       --mixed --> Changes the snapshot and the tree but not the working directory. THIS IS THE DEFAULT OPTION 
+       --hard --> changes the three management mechanisms.
+
+RESET AND CHECKOUT --> are generally used for making local or private undos. 
+REVERT --> is considered a safe operation for public undos
+
+
+This table sums up the most common cases for all tghis commands. 
+------------------------------------------------------
+|Command	   |    Scope	   |	 Common use cases |
+------------------------------------------------------
+git reset		Commit-level		Discard commits in a private branch or throw away uncommited changes
+git reset		File-level			Unstage a file
+git checkout	Commit-level		Switch between branches or inspect old snapshots
+git checkout	File-level			Discard changes in the working directory
+git revert		Commit-level		Undo commits in a public branch
+git Reverting	File-level			(N/A)
+
+A REVERT is a command to undo public commits. It will not change the history of the proyect.
+gti revet <commit> --> will be used to eliminate the specific changes that commit added. Instead of eliminating previous commits it creates a new one without those changes to prevent merge conflicts with the remote.
+
+
+
+
+FILE LEVEL OPERATIONS                        
+
+RESET --> updates the staged snapshot to match the version from the specified commit. Flags as --soft --hard and --mixed do not have any effect here as the staged is always updated and the working never. 
+     
+     git reset HEAD --> will unstage the files.
+
+CHECKOUT --> updates the working directory to the version of the file intended but will not stage changes.     * git reset HEAD --> to unstage the file 
+                                                                                                                 git checkout -- <file> to discard changes once done and go back to HEAD**. 
+
+
+
+
+.GITIGNORE   Once the .gitignore is once committed is going to be used by the repo. Ther is no need to stage and commit unless you want to update remote´s ignore.
+
+This is a common file that contains the name of files/folder that dont need to be tracked by git. Its normally used for dependecy caches, compiled code, folders as /bin /out /target, hidden files and personal IDE configuration files.
+Ignored files are tracked in a special file named .gitignore that is checked in at the root of your repository. There is no explicit git ignore command: instead the .gitignore file must be edited and committed by hand when you have new files that you wish to ignore. .gitignore files contain patterns that are matched against file names in your repository to determine whether or not they should be ignored.
+
+git add -f <file> --> to stage a file althought it is ignored.
+
+if you have complicated .ignore patterns and dont understand why certain file is being ignored 
+git check-out -v <file> 
+the answer will be like this --> <file containing the pattern> : <line number of the pattern> : <pattern> <file name>.
+
+.GITIGNORE GLOBAL --> In addition, you can define global Git ignore patterns for all repositories on your local system by setting the Git core.excludesFile property. You'll have to create this file yourself. If you're unsure where to put your global .gitignore file, your home directory isn't a bad choice.
+       nano  ~/.gitignore
+       git config --global core.excludesFile ~/.gitignore
+
+
+
+
+
+
 
 
 
