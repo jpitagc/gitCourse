@@ -645,8 +645,47 @@ the answer will be like this --> <file containing the pattern> : <line number of
 
 
 
+GIT LOG 
+
+git log --stat --> displays the number of insertions and deletions to each file altered by each commit.The amount of + and - signs next to the file name show the relative number of changes to each file altered by the commit. This 
+                   gives you an idea of where the changes for each commit can be found.
+
+git log -p --> shows the actual changes of each commit. 
+git shortlog --> diplays each user that has been working in the poryect with its resapective commits
+
+you can format log as dsired with --> git log --pretty=format:"string" --> this string is the same format as printf 
+
+git log -number --> substitute number by the amount of logs desired to be display
+
+git log --after="date" --before="date" --> this way you can filter work committed before, after or between certain dates. yesterday is a calid date.
+git log --author --> filter the commits just by a number of authors passed as parameters.
+git log --grep --> filter the commits to find strings in the commit messages.
+git log -- <file1> <file2> ... --> show logs that affected particular files. 
+git log <branch1>..<branch2> --> shows commit form a particular branched point of a particular branch.
+         <since>    <until> 
+
+git log --no-merges --> avoids displaying merge commits 
+git log --merges --> just displaies merge commits.
 
 
+HOOKS ???
+
+
+
+GIT SYNCING. --> git remote , git pull. git push, git fetch.
+
+   -REMOTE :  Remotes serve as convenient names that can be used to reference a not-so-convenient URL. The remote command lets you create, view, and delete connections to other repositories.
+    
+    git remote --> shows the name of the remotes 
+    git remote -v --> shows also the url associated with each remote
+    git remote add <name> <url> --> add a new remote an its url 
+    git remote rm <name> --> eliminate a particular remote 
+
+   -FETCH : Fetching is what you do when you want to see what everybody else has been working on. It’s similar to svn update in that it lets you see how the central history has progressed, but it doesn’t force you to actually 
+            merge the changes into your repository. Git isolates fetched content as a from existing local content, it has absolutely no effect on your local development work. Fetched content has to be explicitly checked out using the git checkout command. This branches are stores as <remotename>/<branchname>. Yo can check this using normal logs.
+    git fecth == git fetch --all    nomally yopu will use --> git fecth remote 
+                                                              git log master..origin/master --> is a good example if you want to see commits that have been added to the upstream master.
+                                                              
 
 
 
